@@ -33,6 +33,22 @@ public class ExtraBoneAPI {
         }
     }
 
+    @LuaWhitelist
+    @LuaMethodDoc(
+            overloads = @LuaMethodOverload(
+                    argumentTypes = {String.class},
+                    argumentNames = {"uuid"}
+            ),
+            value = "extra_bone.is_emote_playing"
+    )
+    public static boolean isEmotePlaying(String uuid) {
+        try {
+            return PlayerBlendHelper.isEmotePlaying(UUID.fromString(uuid));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         return "ExtraBoneAPI";
