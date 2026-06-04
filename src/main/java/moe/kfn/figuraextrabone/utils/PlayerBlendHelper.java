@@ -24,6 +24,18 @@ public class PlayerBlendHelper {
         return new Vector3f(bendVec.getX(), bendVec.getY(), bendVec.getZ());
     }
 
+    /**
+     * True if any player animation (e.g. an Emotecraft emote) is currently playing.
+     * Reads PlayerAnimator's animation stack (IAnimation.isActive()), so it detects
+     * ALL emotes including static poses that have no joint bend.
+     */
+    public static boolean isEmotePlaying(UUID playerUuid) {
+        AbstractClientPlayerEntity player = getPlayer(playerUuid);
+        if (player == null) return false;
+        AnimationStack stack = getAnimationStack(player);
+        return stack != null && stack.isActive();
+    }
+
     private static AnimationStack getAnimationStack(AbstractClientPlayerEntity player) {
         try {
             return PlayerAnimationAccess.getPlayerAnimLayer(player);
