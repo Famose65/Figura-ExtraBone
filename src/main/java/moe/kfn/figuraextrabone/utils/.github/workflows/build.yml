@@ -29,3 +29,4 @@ jobs:
           name: figuraextrabone-jar
           path: build/libs/*.jar
           if-no-files-found: error
+
